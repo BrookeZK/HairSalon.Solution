@@ -215,5 +215,39 @@ namespace HairSalon.Tests
             Assert.AreEqual(newStylist, foundStylist);
         }
 
+        [TestMethod]
+        public void Edit_UpdatesStylistWorkDaysInDatabase_String()
+        {
+            //Arrange
+
+            string workDays1 = "Mon-Fri";
+            Stylist newStylist = new Stylist("Andrea", 3, workDays1);
+            newStylist.Save();
+            string workDays2 = "Thurs-Mon";
+
+            //Act
+            newStylist.Edit(workDays2);
+            string result = Stylist.Find(newStylist.Id).WorkDays;
+
+            //Assert
+            Assert.AreEqual(workDays2, result);
+        }
+
+        [TestMethod]
+        public void DeleteStylist_DeletesStylistFromDatabase_List()
+        {
+            //Arrange
+            Stylist firstStylist = new Stylist("Andrea", 3, "Mon-Fri");
+            firstStylist.Save();
+            Stylist secondStylist = new Stylist("Brodie", 5, "Thurs-Mon");
+            secondStylist.Save();
+            //Act
+            firstStylist.DeleteStylist();
+            List<Stylist> result = Stylist.GetAll();
+            List<Stylist> newList = new List<Stylist> { secondStylist };
+            //Assert
+            CollectionAssert.AreEqual(newList, result);
+        }
+
     }
 }
