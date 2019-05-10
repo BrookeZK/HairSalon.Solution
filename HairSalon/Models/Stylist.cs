@@ -25,7 +25,20 @@ namespace HairSalon.Models
         public string WorkDays { get => _workDays; set => _workDays = value; }
         public int Id { get => _id; set => _id = value; }
 
-
+        public static void ClearAll()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM stylists;";
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+        
     }
 
 }

@@ -6,8 +6,18 @@ using HairSalon.Models;
 namespace HairSalon.Tests
 {
     [TestClass]
-    public class StylistTests
+    public class StylistTests : IDisposable
     {
+        public void Dispose()
+        {
+            Stylist.ClearAll();
+        }
+
+        public void StylistTest()
+        {
+            DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=brooke_kullberg_test;";
+        }
+
         [TestMethod]
         public void StylistConstructor_CreatesInstanceOfStylist_Stylist()
         {
