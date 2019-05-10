@@ -19,7 +19,7 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-        public void Getname_Returnsname_String()
+        public void GetName_Returnsname_String()
         {
             //Arrange
             string name = "Andrea";
@@ -33,7 +33,7 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-        public void Setname_UpdateNameValue_String()
+        public void SetName_UpdateNameValue_String()
         {
             //Arrange
             string name = "Andrea";
@@ -45,6 +45,20 @@ namespace HairSalon.Tests
 
             //Assert
             Assert.AreEqual(name2, result);
+        }
+
+        [TestMethod]
+        public void GetYearsOfExperience_ReturnsYearsOfExperience_Int()
+        {
+            //Arrange
+            int years = 3;
+            Stylist newStylist = new Stylist("Andrea", years, "Mon-Fri");
+
+            //Act
+            int result = newStylist.YearsExperience;
+
+            //Assert
+            Assert.AreEqual(years, result);
         }
 
     }

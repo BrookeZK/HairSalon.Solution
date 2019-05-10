@@ -21,6 +21,7 @@ namespace HairSalon.Models
         }
 
         public string Name { get => _name; set => _name = value; }
+        public int YearsExperience { get => _yearsExperience; set => _yearsExperience = value; }
 
 
 
