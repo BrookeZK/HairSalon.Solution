@@ -224,5 +224,22 @@ namespace HairSalon.Tests
             CollectionAssert.AreEqual(testList, result);
         }
 
+        [TestMethod]
+        public void Save_AssignsIdToObject_Id()
+        {
+            //Arrange
+            DateTime apt =  new DateTime(2019, 05, 19);
+            Client testClient = new Client("Bart", "perm", apt, 1);
+            //Act
+            testClient.Save();
+            Client savedClient = Client.GetAll()[0];
+
+            int result = savedClient.Id;
+            int testId = testClient.Id;
+
+            //Assert
+            Assert.AreEqual(result, testId);
+        }
+
     }
 }
