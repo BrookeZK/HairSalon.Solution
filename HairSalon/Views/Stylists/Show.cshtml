@@ -1,3 +1,42 @@
 @{
-  Layout = "_Layout";
+Layout = "_Layout";
 }
+
+<a href="/stylists/@Model["stylist"].Id/clients/new" class="btn btn-dark">Add a new client</a>
+<a href="/stylists" class="btn btn-dark">Return to list of Stylists</a>
+<a href="/" class="btn btn-dark">Return to homepage</a><br><br>
+
+<div class="row">
+    <div class="card col-md-6">
+        <div class="card-body">
+            <h1 class="card-title">@Model["stylist"].Name</h1><br>
+            <div class="card-text">
+                <h2>Years of experience:</h2><br>
+                <h3>@Model["stylist"].YearsExperience</h3><br>
+                <h2>Days available to work:</h2><br>
+                <h3>@Model["stylist"].WorkDays</h3><br><br>
+            </div>
+        </div>
+    </div>
+
+    <div class="card col-md-6">
+        <div class="card-body">
+            <h1 class="card-title">@Model["stylist"].Name's Clients:</h1><br>
+            <div class="card-text">
+                <ol>
+                    @if (Model["clients"].Count == 0)
+                    {
+                        <p>No clients have been added yet!</p>
+                    }
+                    @if(Model["clients"].Count != 0)
+                    {
+                        @foreach (var client in @Model["clients"])
+                        {
+                            <li><a href="/stylists/@Model["stylist"].Id/clients/@client.Id" class="btn btn-dark">@client.Name</a></li>
+                        }
+                    }
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
