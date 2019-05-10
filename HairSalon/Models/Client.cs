@@ -21,7 +21,7 @@ namespace HairSalon.Models
             _id = id;
         }
 
-        
+        public string Name { get => _name; set => _name = value; }
 
 
     }
