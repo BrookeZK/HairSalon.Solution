@@ -23,6 +23,7 @@ namespace HairSalon.Models
 
         public string Name { get => _name; set => _name = value; }
         public string ServiceRequest { get => _serviceRequest; set => _serviceRequest = value; }
+        public DateTime Appointment { get => _appointment; set => _appointment = value; }
 
 
     }

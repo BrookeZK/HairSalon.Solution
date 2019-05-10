@@ -66,7 +66,7 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-        public void SetName_UpdateServicesRequested_String()
+        public void SetServicesRequested_UpdateServicesRequested_String()
         {
             //Arrange
             string serviceReq = "hair cut";
@@ -79,6 +79,35 @@ namespace HairSalon.Tests
 
             //Assert
             Assert.AreEqual(serviceReq2, result);
+        }
+
+        [TestMethod]
+        public void GetAppointment_ReturnsAppointment_DateTime()
+        {
+            //Arrange
+            DateTime apt =  new DateTime(2019, 05, 19);
+            Client newClient = new Client("Bart", "perm", apt, 1);
+
+            //Act
+            DateTime result = newClient.Appointment;
+
+            //Assert
+            Assert.AreEqual(apt, result);
+        }
+
+        [TestMethod]
+        public void SetAppointment_UpdateAppointment_DateTime()
+        {
+            //Arrange
+            DateTime apt =  new DateTime(2019, 05, 19);
+            DateTime apt2 =  new DateTime(2019, 05, 17);
+            Client newClient = new Client("Bart", "perm", apt, 1);
+
+            //Act
+            DateTime result = newClient.Appointment = apt2;
+
+            //Assert
+            Assert.AreEqual(apt2, result);
         }
 
     }
