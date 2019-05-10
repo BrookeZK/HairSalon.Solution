@@ -61,5 +61,20 @@ namespace HairSalon.Tests
             Assert.AreEqual(years, result);
         }
 
+        [TestMethod]
+        public void SetYearsOfExperience_ReturnsYearsOfExperience_Int()
+        {
+            //Arrange
+            int years = 3;
+            int yearsNew = 5;
+            Stylist newStylist = new Stylist("Andrea", years, "Mon-Fri");
+
+            //Act
+            int result = newStylist.YearsExperience = yearsNew;
+
+            //Assert
+            Assert.AreEqual(yearsNew, result);
+        }
+
     }
 }
