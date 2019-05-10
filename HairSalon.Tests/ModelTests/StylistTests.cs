@@ -249,5 +249,25 @@ namespace HairSalon.Tests
             CollectionAssert.AreEqual(newList, result);
         }
 
+        [TestMethod]
+        public void GetClients_RetrievesAllItemsWithCategory_ItemList()
+        {
+            //Arrange, Act
+            Stylist testStylist = new Stylist("Andrea", 3, "Mon-Fri");
+            testStylist.Save();
+            DateTime apt =  new DateTime(2019, 05, 19);
+            Client firstClient = new Client("Bart", "perm", apt, 1);
+            firstClient.StylistId = testStylist.Id;
+            firstClient.Save();
+            Client secondClient = new Client("RodeoStarr", "color", apt, 1);
+            secondClient.StylistId = testStylist.Id;
+            secondClient.Save();
+            List<Client> testClientList = new List<Client> {firstClient, secondClient};
+            List<Client> resultClientList = testStylist.GetClients();
+
+            //Assert
+            CollectionAssert.AreEqual(testClientList, resultClientList);
+        }
+
     }
 }
