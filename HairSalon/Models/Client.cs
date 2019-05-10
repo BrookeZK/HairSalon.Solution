@@ -27,6 +27,24 @@ namespace HairSalon.Models
         public int StylistId { get => _stylistId; set => _stylistId = value; }
         public int Id { get => _id; }
 
+        public override bool Equals(System.Object otherClient)
+        {
+            if (!(otherClient is Client))
+            {
+                return false;
+            }
+            else
+            {
+                Client newClient = (Client) otherClient;
+                bool idEquality = this.Id == newClient.Id;
+                bool nameEquality = (this.Name == newClient.Name);
+                bool serviceRequestEquality = this.ServiceRequest == newClient.ServiceRequest;
+                bool appointmentEquality = this.Appointment == newClient.Appointment;
+                bool stylistIdEquality = this.StylistId == newClient.StylistId;
+                return (idEquality && serviceRequestEquality && appointmentEquality && nameEquality && stylistIdEquality);
+             }
+        }
+
 
     }
 

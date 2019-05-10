@@ -156,5 +156,17 @@ namespace HairSalon.Tests
             Assert.AreEqual(id, result);
         }
 
+        [TestMethod]
+        public void Equals_ReturnsTrueIfPropertiesAreTheSame_Client()
+        {
+            // Arrange, Act
+            DateTime apt =  new DateTime(2019, 05, 19);
+            Client firstClient = new Client("Bart", "perm", apt, 1);
+            Client secondClient = new Client("Bart", "perm", apt, 1);
+
+            // Assert
+            Assert.AreEqual(firstClient, secondClient);
+        }
+
     }
 }
