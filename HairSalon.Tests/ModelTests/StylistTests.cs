@@ -129,6 +129,19 @@ namespace HairSalon.Tests
             Assert.AreEqual(id, result);
         }
 
+        [TestMethod]
+        public void GetAll_ReturnsEmptyListFromDatabase_StylistList()
+        {
+            //Arrange
+            List<Stylist> newList = new List<Stylist> { };
+
+            //Act
+            List<Stylist> result = Stylist.GetAll();
+
+            //Assert
+            CollectionAssert.AreEqual(newList, result);
+        }
+
 
     }
 }
