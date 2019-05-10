@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+<h1>Stylists</h1>
+<h2><em>Select a Stylist for details</em></h2>
+
+<ul>
+    @if (Model.Count == 0)
+    {
+        <p>No Stylists have been added yet!</p>
+    }
+    @if(Model.Count != 0)
+    {
+    @foreach (var stylist in Model)
+    {
+        <a href="/stylists/@stylist.Id" class="btn btn-dark">@stylist.Name</a><br>
+    }
+    }
+</ul>
+<h1><a href="/stylists/new" class="btn btn-dark">Add a new stylist</a></h1>
+<a href="/" class="btn btn-dark">Back to homepage</a>
