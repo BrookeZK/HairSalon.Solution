@@ -44,6 +44,24 @@ namespace HairSalon.Models
             List<Stylist> newList = new List<Stylist> {};
             return newList;
         }
+
+        public override bool Equals(System.Object otherStylist)
+        {
+            if (!(otherStylist is Stylist))
+            {
+                return false;
+            }
+            else
+            {
+                Stylist newStylist = (Stylist) otherStylist;
+                bool idEquality = this.Id == newStylist.Id;
+                bool nameEquality = (this.Name == newStylist.Name);
+                bool yearsExperienceEquality = this.YearsExperience == newStylist.YearsExperience;
+                bool workDaysEquality = this.WorkDays == newStylist.WorkDays;
+                return (idEquality && yearsExperienceEquality && nameEquality && workDaysEquality);
+             }
+        }
+
     }
 
 }

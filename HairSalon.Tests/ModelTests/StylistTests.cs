@@ -142,6 +142,15 @@ namespace HairSalon.Tests
             CollectionAssert.AreEqual(newList, result);
         }
 
+        [TestMethod]
+        public void Equals_ReturnsTrueIfPropertiesAreTheSame_Stylist()
+        {
+          // Arrange, Act
+          Stylist firstStylist = new Stylist("Andrea", 3, "Mon-Fri");
+          Stylist secondStylist = new Stylist("Andrea", 3, "Mon-Fri");
 
+          // Assert
+          Assert.AreEqual(firstStylist, secondStylist);
+        }
     }
 }
