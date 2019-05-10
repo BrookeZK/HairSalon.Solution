@@ -9,7 +9,18 @@
 //     [TestClass]
 //     public class ClientsControllerTest
 //     {
+//         [TestMethod]
+//         public void New_ReturnsCorrectView_True()
+//         {
+//             //Arrange
+//             ClientsController controller = new ClientsController();
 //
+//             //Act
+//             ActionResult newView = controller.New();
+//
+//             //Assert
+//             Assert.IsInstanceOfType(newView, typeof(ViewResult));
+//         }
 //
 //     }
 // }

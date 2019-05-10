@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+<h1>Stylists</h1>
+<h2><em>Add a new Client</em></h2>
+
+<form action='/stylists/@Model.Id/clients' method='post'>
+    <label for="ClientName">Client name:</label>
+    <input id="ClientName" name="ClientName" type="text">
+
+    <label for="serviceReq">Requested service:</label>
+    <input id="serviceReq" name="serviceReq" type="number">
+    <label for="Appointment">Days available to work:</label>
+    <input id="Appointment" name="Appointment" type="datetime-local">
+    <button type='submit' class="btn btn-dark">Add Client</button>
+</form>
+
+<a href="/stylists/@Model.Id" class="btn btn-dark">Return to stylist info page</a>
+<a href="/stylists" class="btn btn-dark">Return to list of Stylists</a>
+<a href="/" class="btn btn-dark">Return to homepage</a><br><br>

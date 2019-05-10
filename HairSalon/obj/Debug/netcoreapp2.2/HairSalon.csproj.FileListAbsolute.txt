@@ -25,3 +25,5 @@
 /Users/Brooke/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Stylists/Index.g.cshtml.cs
 /Users/Brooke/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Stylists/New.g.cshtml.cs
 /Users/Brooke/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Stylists/Show.g.cshtml.cs
+/Users/Brooke/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Clients/Index.g.cshtml.cs
+/Users/Brooke/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Clients/New.g.cshtml.cs
