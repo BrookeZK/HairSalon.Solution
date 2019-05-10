@@ -18,5 +18,19 @@ namespace HairSalon.Tests
             Assert.AreEqual(typeof(Stylist), newStylist.GetType());
         }
 
+        [TestMethod]
+        public void Getname_Returnsname_String()
+        {
+            //Arrange
+            string name = "Andrea";
+            Stylist newStylist = new Stylist(name, 5, "Mon-Fri");
+
+            //Act
+            string result = newStylist.Name;
+
+            //Assert
+            Assert.AreEqual(name, result);
+        }
+
     }
 }

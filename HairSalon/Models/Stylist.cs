@@ -20,6 +20,8 @@ namespace HairSalon.Models
             _workDays = workDays;
         }
 
+        public string Name { get => _name; set => _name = value; }
+
 
 
     }
