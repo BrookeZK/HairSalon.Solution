@@ -256,5 +256,40 @@ namespace HairSalon.Tests
             Assert.AreEqual(testClient, foundClient);
         }
 
+        [TestMethod]
+        public void EditServReq_UpdatesClientServicesRequestInDatabase_String()
+        {
+            //Arrange
+            DateTime apt =  new DateTime(2019, 05, 19);
+            string service1 = "perm";
+            Client newClient = new Client("Bart", service1, apt, 1);
+            newClient.Save();
+            string service2 = "cut";
+
+            //Act
+            newClient.EditServReq(service2);
+            string result = Client.Find(newClient.Id).ServiceRequest;
+
+            //Assert
+            Assert.AreEqual(service2, result);
+        }
+
+        [TestMethod]
+        public void EditApt_UpdatesClientAppointmentInDatabase_DateTime()
+        {
+            //Arrange
+            DateTime apt1 =  new DateTime(2019, 05, 19);
+            Client newClient = new Client("Bart", "perm", apt1, 1);
+            newClient.Save();
+            DateTime apt2 =  new DateTime(2019, 06, 06);
+
+            //Act
+            newClient.EditApt(apt2);
+            DateTime result = Client.Find(newClient.Id).Appointment;
+
+            //Assert
+            Assert.AreEqual(apt2, result);
+        }
+
     }
 }

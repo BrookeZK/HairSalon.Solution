@@ -149,6 +149,52 @@ namespace HairSalon.Models
             return foundClient;
         }
 
+        public void EditServReq(string newServiceRequest)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"UPDATE clients SET services_requested = @newSerReq WHERE id = @searchId;";
+            MySqlParameter searchId = new MySqlParameter();
+            searchId.ParameterName = "@searchId";
+            searchId.Value = _id;
+            cmd.Parameters.Add(searchId);
+            MySqlParameter serviceReq = new MySqlParameter();
+            serviceReq.ParameterName = "@newSerReq";
+            serviceReq.Value = newServiceRequest;
+            cmd.Parameters.Add(serviceReq);
+            cmd.ExecuteNonQuery();
+            _serviceRequest = newServiceRequest;
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
+        public void EditApt(DateTime newAppointment)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"UPDATE clients SET appointment_time = @newAppointment WHERE id = @searchId;";
+            MySqlParameter searchId = new MySqlParameter();
+            searchId.ParameterName = "@searchId";
+            searchId.Value = _id;
+            cmd.Parameters.Add(searchId);
+            MySqlParameter appointment = new MySqlParameter();
+            appointment.ParameterName = "@newAppointment";
+            appointment.Value = newAppointment;
+            cmd.Parameters.Add(appointment);
+            cmd.ExecuteNonQuery();
+            _appointment = newAppointment;
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
 
     }
 
