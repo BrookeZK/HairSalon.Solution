@@ -241,5 +241,20 @@ namespace HairSalon.Tests
             Assert.AreEqual(result, testId);
         }
 
+        [TestMethod]
+        public void Find_ReturnsCorrectClientFromDatabase_Client()
+        {
+            //Arrange
+            DateTime apt =  new DateTime(2019, 05, 19);
+            Client testClient = new Client("Bart", "perm", apt, 1);
+            testClient.Save();
+
+            //Act
+            Client foundClient = Client.Find(testClient.Id);
+
+            //Assert
+            Assert.AreEqual(testClient, foundClient);
+        }
+
     }
 }
