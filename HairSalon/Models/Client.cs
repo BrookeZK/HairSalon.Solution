@@ -85,6 +85,37 @@ namespace HairSalon.Models
             return allClients;
         }
 
+        public void Save()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"INSERT INTO clients (name, services_requested, appointment_time, stylist_id) VALUES (@name, @servicesReq, @appointment, @stylistId);";
+            MySqlParameter name = new MySqlParameter();
+            name.ParameterName = "@name";
+            name.Value = this._name;
+            cmd.Parameters.Add(name);
+            MySqlParameter serviceRequest = new MySqlParameter();
+            serviceRequest.ParameterName = "@servicesReq";
+            serviceRequest.Value = this._serviceRequest;
+            cmd.Parameters.Add(serviceRequest);
+            MySqlParameter appointment = new MySqlParameter();
+            appointment.ParameterName = "@appointment";
+            appointment.Value = this._appointment;
+            cmd.Parameters.Add(appointment);
+            MySqlParameter stylistId = new MySqlParameter();
+            stylistId.ParameterName = "@stylistId";
+            stylistId.Value = this._stylistId;
+            cmd.Parameters.Add(stylistId);
+            cmd.ExecuteNonQuery();
+            _id = (int) cmd.LastInsertedId;
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
 
     }
 

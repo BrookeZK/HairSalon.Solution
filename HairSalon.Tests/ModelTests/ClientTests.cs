@@ -197,7 +197,9 @@ namespace HairSalon.Tests
             //Arrange
             DateTime apt =  new DateTime(2019, 05, 19);
             Client firstClient = new Client("Bart", "perm", apt, 1);
+            firstClient.Save();
             Client secondClient = new Client("RodeoStarr", "color", apt, 1);
+            secondClient.Save();
             List<Client> newList = new List<Client> { firstClient, secondClient };
 
             //Act
@@ -205,6 +207,21 @@ namespace HairSalon.Tests
 
             //Assert
             CollectionAssert.AreEqual(newList, result);
+        }
+
+        [TestMethod]
+        public void Save_SavesToDatabase_ClientList()
+        {
+            //Arrange
+            DateTime apt =  new DateTime(2019, 05, 19);
+            Client testClient = new Client("Bart", "perm", apt, 1);
+            //Act
+            testClient.Save();
+            List<Client> result = Client.GetAll();
+            List<Client> testList = new List<Client>{testClient};
+
+            //Assert
+            CollectionAssert.AreEqual(testList, result);
         }
 
     }
