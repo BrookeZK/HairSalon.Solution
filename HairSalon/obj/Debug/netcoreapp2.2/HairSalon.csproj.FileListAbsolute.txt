@@ -12,3 +12,13 @@
 /Users/Brooke/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp2.2/HairSalon.RazorTargetAssemblyInfo.cache
 /Users/Brooke/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp2.2/HairSalon.dll
 /Users/Brooke/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp2.2/HairSalon.pdb
+/Users/Brooke/Desktop/HairSalon.Solution/HairSalon/bin/Debug/netcoreapp2.2/HairSalon.Views.dll
+/Users/Brooke/Desktop/HairSalon.Solution/HairSalon/bin/Debug/netcoreapp2.2/HairSalon.Views.pdb
+/Users/Brooke/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp2.2/HairSalon.TagHelpers.input.cache
+/Users/Brooke/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp2.2/HairSalon.TagHelpers.output.cache
+/Users/Brooke/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp2.2/HairSalon.RazorCoreGenerate.cache
+/Users/Brooke/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.g.cshtml.cs
+/Users/Brooke/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_Layout.g.cshtml.cs
+/Users/Brooke/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp2.2/HairSalon.RazorTargetAssemblyInfo.cs
+/Users/Brooke/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp2.2/HairSalon.Views.pdb
+/Users/Brooke/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp2.2/HairSalon.csproj.CopyComplete
