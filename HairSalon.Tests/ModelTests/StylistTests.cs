@@ -105,5 +105,20 @@ namespace HairSalon.Tests
             Assert.AreEqual(newWorkDays, result);
         }
 
+        [TestMethod]
+        public void GetId_ReturnsId_Int()
+        {
+            //Arrange
+            int id = 0;
+            Stylist newStylist = new Stylist("Andrea", 3, "Mon-Fri");
+
+            //Act
+            int result = newStylist.Id;
+
+            //Assert
+            Assert.AreEqual(id, result);
+        }
+
+
     }
 }
