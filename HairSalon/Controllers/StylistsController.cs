@@ -19,8 +19,18 @@ namespace HairSalon.Controllers
         [HttpGet("/stylists/new")]
         public ActionResult New()
         {
-          return View();
+            return View();
         }
+
+        [HttpPost("/stylists")]
+        public ActionResult Create(string stylistName, int yearsExperience, string workDays)
+        {
+            Stylist newStylist = new Stylist(stylistName, yearsExperience, workDays);
+            newStylist.Save();
+            return RedirectToAction("Index");
+        }
+
+
 
     }
 

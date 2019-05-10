@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+<h1>Stylists</h1>
+<h2><em>Add a new Stylist</em></h2>
+
+<form action='/stylists' method='post'>
+    <label for="stylistName">Stylist name:</label>
+    <input id="stylistName" name="stylistName" type="text">
+    <label for="yearsExperience">Years of Experience:</label>
+    <input id="yearsExperience" name="yearsExperience" type="number">
+    <label for="workDays">Days available to work:</label>
+    <input id="workDays" name="workDays" type="text">
+    <button type='submit' class="btn btn-dark">Add Stylist</button>
+</form>
