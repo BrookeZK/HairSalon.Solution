@@ -18,6 +18,7 @@ namespace HairSalon.Models
             _name = name;
             _yearsExperience = yearsExperience;
             _workDays = workDays;
+            _id = id;
         }
 
         public string Name { get => _name; set => _name = value; }
@@ -41,8 +42,27 @@ namespace HairSalon.Models
 
         public static List<Stylist> GetAll()
         {
-            List<Stylist> newList = new List<Stylist> {};
-            return newList;
+            List<Stylist> allStylists = new List<Stylist> {};
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM stylists;";
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            while(rdr.Read())
+            {
+                int stylistId = rdr.GetInt32(0);
+                string stylistName = rdr.GetString(1);
+                int stylistYearsExp = rdr.GetInt32(2);
+                string stylistWorkDays = rdr.GetString(3);
+                Stylist newStylist = new Stylist(stylistName, stylistYearsExp, stylistWorkDays, stylistId);
+                allStylists.Add(newStylist);
+            }
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+            return allStylists;
         }
 
         public override bool Equals(System.Object otherStylist)
@@ -61,6 +81,35 @@ namespace HairSalon.Models
                 return (idEquality && yearsExperienceEquality && nameEquality && workDaysEquality);
              }
         }
+
+        public void Save()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"INSERT INTO stylists (name, years_of_experience, work_days) VALUES (@name, @yearsExperience, @workDays);";
+            MySqlParameter name = new MySqlParameter();
+            name.ParameterName = "@name";
+            name.Value = this._name;
+            cmd.Parameters.Add(name);
+            MySqlParameter yearsExperience = new MySqlParameter();
+            yearsExperience.ParameterName = "@yearsExperience";
+            yearsExperience.Value = this._yearsExperience;
+            cmd.Parameters.Add(yearsExperience);
+            MySqlParameter workDays = new MySqlParameter();
+            workDays.ParameterName = "@workDays";
+            workDays.Value = this._workDays;
+            cmd.Parameters.Add(workDays);
+            cmd.ExecuteNonQuery();
+            _id = (int) cmd.LastInsertedId;
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
+
 
     }
 
