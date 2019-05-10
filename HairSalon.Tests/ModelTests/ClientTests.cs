@@ -291,5 +291,22 @@ namespace HairSalon.Tests
             Assert.AreEqual(apt2, result);
         }
 
+        [TestMethod]
+        public void DeleteClient_DeletesClientFromDatabase_List()
+        {
+            //Arrange
+            DateTime apt =  new DateTime(2019, 05, 19);
+            Client firstClient = new Client("Bart", "perm", apt, 1);
+            firstClient.Save();
+            Client secondClient = new Client("RodeoStarr", "color", apt, 1);
+            secondClient.Save();
+            //Act
+            firstClient.DeleteClient();
+            List<Client> result = Client.GetAll();
+            List<Client> newList = new List<Client> { secondClient };
+            //Assert
+            CollectionAssert.AreEqual(newList, result);
+        }
+
     }
 }
