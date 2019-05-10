@@ -76,5 +76,34 @@ namespace HairSalon.Tests
             Assert.AreEqual(yearsNew, result);
         }
 
+        [TestMethod]
+        public void GetWorkDays_ReturnsWorkDays_String()
+        {
+            //Arrange
+            string workDays = "Mon-Fri";
+            Stylist newStylist = new Stylist("Andrea", 3, workDays);
+
+            //Act
+            string result = newStylist.WorkDays;
+
+            //Assert
+            Assert.AreEqual(workDays, result);
+        }
+
+        [TestMethod]
+        public void SetWorkDays_ReturnsWorkDays_String()
+        {
+            //Arrange
+            string workDays = "Mon-Fri";
+            string newWorkDays = "Thurs-Mon";
+            Stylist newStylist = new Stylist("Andrea", 3, workDays);
+
+            //Act
+            string result = newStylist.WorkDays = newWorkDays;
+
+            //Assert
+            Assert.AreEqual(newWorkDays, result);
+        }
+
     }
 }
