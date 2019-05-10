@@ -141,5 +141,20 @@ namespace HairSalon.Tests
             Assert.AreEqual(id2, result);
         }
 
+        [TestMethod]
+        public void GetId_ReturnsId_Int()
+        {
+            //Arrange
+            int id = 0;
+            DateTime apt =  new DateTime(2019, 05, 19);
+            Client newClient = new Client("Bart", "perm", apt, 1);
+
+            //Act
+            int result = newClient.Id;
+
+            //Assert
+            Assert.AreEqual(id, result);
+        }
+
     }
 }
