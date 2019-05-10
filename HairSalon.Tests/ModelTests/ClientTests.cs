@@ -110,5 +110,36 @@ namespace HairSalon.Tests
             Assert.AreEqual(apt2, result);
         }
 
+        [TestMethod]
+        public void GetStylistId_ReturnsStylistId_Int()
+        {
+            //Arrange
+            int id = 1;
+            DateTime apt =  new DateTime(2019, 05, 19);
+            Client newClient = new Client("Bart", "perm", apt, id);
+
+            //Act
+            int result = newClient.StylistId;
+
+            //Assert
+            Assert.AreEqual(id, result);
+        }
+
+        [TestMethod]
+        public void SetStylistId_UpdateStylistId_Int()
+        {
+            //Arrange
+            int id = 1;
+            int id2 = 2;
+            DateTime apt =  new DateTime(2019, 05, 19);
+            Client newClient = new Client("Bart", "perm", apt, id);
+
+            //Act
+            int result = newClient.StylistId = id2;
+
+            //Assert
+            Assert.AreEqual(id2, result);
+        }
+
     }
 }
