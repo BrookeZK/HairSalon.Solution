@@ -37,7 +37,7 @@ _To make your own database in MySql shell:_
 ## Specs
 
 | Behavior | Input / Output |
-| ------------- |:-------------:| -----:|
+| ------------- |:-------------:|
 | 1. Upon launching the application, user has option to *View Stylists* or *Add a new Stylist* | Launch application, on homepage |
 | 2a. Upon clicking on *Add a new stylist*, user is presented with form, input fields, and an *Add* button | Click *Add a new stylist and it will be added to database, and the page redirected to a list of stylists |
 | 2b. Upon clicking on  *View Stylists*, user is presented with list of the stylists in the database| redirection to a new page with list of stylists |
