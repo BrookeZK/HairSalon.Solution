@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace HairSalon.Controllers
 {
 
-    public class ItemsController : Controller
+    public class ClientsController : Controller
     {
 
         [HttpGet("/stylists/{stylistId}/clients/new")]
@@ -15,7 +15,16 @@ namespace HairSalon.Controllers
             return View(stylist);
         }
 
-
+        [HttpGet("/stylists/{stylistId}/clients/{clientId}")]
+        public ActionResult Show(int stylistId, int clientId)
+        {
+            Client client = Client.Find(clientId);
+            Dictionary<string, object> model = new Dictionary<string, object>();
+            Stylist stylist = Stylist.Find(stylistId);
+            model.Add("stylist", stylist);
+            model.Add("client", client);
+            return View(model);
+        }
 
     }
 

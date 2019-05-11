@@ -30,6 +30,7 @@ Layout = "_Layout";
                     }
                     @if(Model["clients"].Count != 0)
                     {
+                        <h2>Click a client's name to learn more:</h2>
                         @foreach (var client in @Model["clients"])
                         {
                             <li><a href="/stylists/@Model["stylist"].Id/clients/@client.Id" class="btn btn-dark">@client.Name</a></li>

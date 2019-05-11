@@ -4,12 +4,12 @@
 <h1>Stylists</h1>
 <h2><em>Add a new Client</em></h2>
 
-<form action='/stylists/@Model.Id/clients' method='post'>
+<form action='/stylists/@Model.Id' method='post'>
     <label for="clientName">Client name:</label>
     <input id="clientName" name="clientName" type="text">
     <label for="serviceReq">Requested service:</label>
     <input id="serviceReq" name="serviceReq" type="text">
-    <label for="appointment">Days available to work:</label>
+    <label for="appointment">Appointment time and date:</label>
     <input id="appointment" name="appointment" type="datetime-local">
     <button type='submit' class="btn btn-dark">Add Client</button>
 </form>

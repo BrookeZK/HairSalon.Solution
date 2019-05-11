@@ -1,0 +1,20 @@
+@{
+Layout = "_Layout";
+}
+
+<a href="/stylists/@Model["stylist"].Id" class="btn btn-dark">Back to Stylist</a>
+<a href="/stylists" class="btn btn-dark">Return to list of Stylists</a>
+<a href="/" class="btn btn-dark">Return to homepage</a><br><br>
+
+<div class="row">
+    <div class="card col-md-12">
+        <div class="card-body">
+            <h1 class="card-title">@Model["stylist"].Name's client: <em>@Model["client"].Name</em></h1><br>
+            <div class="card-text">
+                <h2>Requested Service:</h2><br>
+                <h3>---@Model["client"].ServiceRequest</h3><br>
+                <h2>Appointment Time and Date:</h2><br>
+                <h3>---@Model["client"].Appointment</h3><br><br>
+            </div>
+        </div>
+    </div>
