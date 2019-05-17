@@ -133,7 +133,7 @@ namespace HairSalon.Tests
             //Arrange
             Specialty testSpecialty = new Specialty("hair");
             testSpecialty.Save();
-            
+
             //Act
             Specialty savedSpecialty = Specialty.GetAll()[0];
 
@@ -142,6 +142,22 @@ namespace HairSalon.Tests
 
             //Assert
             Assert.AreEqual(result, testId);
+        }
+
+        [TestMethod]
+        public void Find_ReturnsCorrectSpecialtyFromDatabase_Specialty()
+        {
+            //Arrange
+            Specialty testSpecialty1 = new Specialty("perm");
+            testSpecialty1.Save();
+            Specialty testSpecialty2 = new Specialty("hair");
+            testSpecialty2.Save();
+
+            //Act
+            Specialty foundSpecialty = Specialty.Find(testSpecialty2.Id);
+
+            //Assert
+            Assert.AreEqual(testSpecialty2, foundSpecialty);
         }
 
     }
