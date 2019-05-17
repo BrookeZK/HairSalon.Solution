@@ -1,0 +1,40 @@
+#sideMenu {
+    background-color: black;
+    align-items: center;
+    text-align: center;
+}
+
+#welcomeImage {
+    background-image: url("/img/cutterz.jpg");
+    background-size: cover;
+    height: auto;
+    width: 75%;
+}
+
+h1 {
+    font-family: cursive;
+    color: white;
+}
+
+.row {
+    height: 100vh;
+}
+
+#authentication {
+    color: white;
+    border: solid white 2px;
+    padding: 25px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 25px;
+}
+
+#specialWelcome {
+    color: white;
+    border: solid white 2px;
+    padding: 25px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 25px;
+    font-size: 25px;
+}
