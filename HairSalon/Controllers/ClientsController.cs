@@ -37,9 +37,12 @@ namespace HairSalon.Controllers
         [HttpGet("/stylists/{stylistId}/clients/{clientId}/edit")]
         public ActionResult Edit(int stylistId, int clientId)
         {
-            Client foundClient = Client.Find(clientId);
-            foundClient.Edit();
-            return RedirectToAction("Show", new {id = clientId})
+            Client client = Client.Find(clientId);
+            Dictionary<string, object> model = new Dictionary<string, object>();
+            Stylist stylist = Stylist.Find(stylistId);
+            model.Add("stylist", stylist);
+            model.Add("client", client);
+            return View(model);
         }
 
     }

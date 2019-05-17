@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+<h1>Stylists</h1>
+<h2><em>Add a new Client</em></h2>
+
+<form action='/stylists/@Model["stylist"].Id/clients/@Model["client"].Id' method='post'>
+    <label for="newName">Client name:</label>
+    <input id="newName" name="newName" type="text" value="@Model["client"].Name">
+    <label for="newServiceRequest">Requested service:</label>
+    <input id="newServiceRequest" name="newServiceRequest" type="text" value="@Model["client"].ServiceRequest>
+    <label for="newAppointment">Appointment time and date:</label>
+    <input id="newAppointment" name="newAppointment" type="datetime-local" value="@Model["client"].Appointment>
+    <button type='submit' class="btn btn-dark">Save Changes</button>
+</form>
+
+<a href="/stylists/@Model["stylist"].Id/clients/@Model["client"].Id" class="btn btn-dark">Return to client info page</a>
+<a href="/stylists/@Model["stylist"].Id" class="btn btn-dark">Return to stylist info page</a>
+<a href="/stylists" class="btn btn-dark">Return to list of Stylists</a>
+<a href="/login" class="btn btn-dark">Return to homepage</a><br><br>
