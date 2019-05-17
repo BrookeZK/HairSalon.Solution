@@ -1,0 +1,52 @@
+@{
+Layout = "_Layout";
+}
+<h1>Specialties</h1>
+<a href="/specialties" class="btn btn-dark">Return to list of Specialties</a>
+<a href="/login" class="btn btn-dark">Return to homepage</a><br><br>
+<div class="row">
+    <div class="card col-md-6">
+        <div class="card-body">
+            <h1 class="card-title">@Model["specialty"].Name</h1><br>
+            <div class="card-text">
+                <h2>Cost of service:</h2><br>
+                <h3>$@Model["specialty"].Price</h3><br>
+                <a href="/specialties/Model["specialty"].Id/edit" class="btn btn-dark">Edit Specialty Information</a>
+                <form action="/specialties/@Model["specialty"].Id/delete-specialty" method="post">
+                    <button type="submit" class="btn btn-dark">Delete Specialty</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card col-md-6">
+        <div class="card-body">
+            <div class="card-text">
+                <h1 class="card-title">Stylists with this specialization: </h1><br>
+                <ol>
+                    @if (Model["stylistSpecialties"].Count == 0)
+                    {
+                        <p>No stylists have been added yet!</p>
+                    }
+                    @if (Model["stylistSpecialties"].Count != 0)
+                    {
+                        @foreach (var stylist in Model["stylistSpecialties"])
+                        {
+                            <li><a href="/stylists/stylist.Id" class="btn btn-dark">@stylist.Name</a></li>
+                        }
+                    }
+                </ol>
+                <h2>Add a stylist to this specialty:</h2>
+                <form action="/specialties/@Model["specialty"].Id/add-stylist" method="post" >
+                  <select name='id' type='number'>
+                    <option value = 0>None</option>
+                    @foreach (var stylist in @Model["stylists"])
+                    {
+                      <option value='@stylist.Id'>@stylist.Name</option>
+                    }
+                  </select>
+                  <button type="submit" class="btn btn-dark">Add Stylist</button>
+                </form><br>
+            </div>
+        </div>
+    </div>
+</div>

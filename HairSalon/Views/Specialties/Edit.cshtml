@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+<h1>Stylists</h1>
+<h2><em>Update: @Model.Name</em></h2>
+
+<form action='/specialties/@Model.Id/edit' method='post'>
+    <label for="newSpecialtyName">Specialty name:</label>
+    <input id="newSpecialtyName" name="newSpecialtyName" type="text" value="@Model.Name">
+    <label for="newSpecialtyPrice">Specialty price:</label>
+    <input id="newSpecialtyPrice" name="newSpecialtyPrice" type="number" value="@Model.Price">
+    <button type='submit' class="btn btn-dark">Save Changes</button>
+</form>
+
+<a href="/specialties/@Model.Id" class="btn btn-dark">Return to @Model.Name</a>
+<a href="/specialties" class="btn btn-dark">Return to list of Specialties</a>
+<a href="/login" class="btn btn-dark">Return to homepage</a><br><br>

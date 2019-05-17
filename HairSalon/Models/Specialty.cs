@@ -173,41 +173,61 @@ namespace HairSalon.Models
             }
         }
 
-        // public List<Client> GetClients()
-        // {
-        //   List<Client> allSpecialtyClients = new List<Client> {};
-        //   MySqlConnection conn = DB.Connection();
-        //   conn.Open();
-        //   var cmd = conn.CreateCommand() as MySqlCommand;
-        //   cmd.CommandText = @"SELECT client_id.* FROM service_requests WHERE specialty_id = @specialty_id;";
-        //   MySqlParameter specialtyId = new MySqlParameter();
-        //   specialtyId.ParameterName = "@specialty_id";
-        //   specialtyId.Value = this._id;
-        //   cmd.Parameters.Add(specialtyId);
-        //   var rdr = cmd.ExecuteReader() as MySqlDataReader;
-        //   int clientId = 0;
-        //   string clientName = "";
-        //   string clientServReq = "";
-        //   DateTime clientApt = new DateTime();
-        //   int clientStylistId = 0;
-        //   while(rdr.Read())
-        //   {
-        //       clientId = rdr.GetInt32(0);
-        //       clientName = rdr.GetString(1);
-        //       clientServReq = rdr.GetString(2);
-        //       clientApt = rdr.GetDateTime(3);
-        //       clientStylistId = rdr.GetInt32(4);
-        //       Client foundClient = new Client(clientName, clientServReq, clientApt, clientStylistId, clientId);
-        //       allStylistClients.Add(foundClient);
-        //   }
-        //   conn.Close();
-        //   if (conn != null)
-        //   {
-        //       conn.Dispose();
-        //   }
-        //   return allStylistClients;
-        // }
+        public void AddStylist(int stylistId)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"INSERT INTO service_requests (specialty_id, stylist_id) VALUES (@specialtyId, @stylistId);";
+            MySqlParameter specialtyIdParam = new MySqlParameter();
+            specialtyIdParam.ParameterName = "@specialtyId";
+            specialtyIdParam.Value = this._id;
+            cmd.Parameters.Add(specialtyIdParam);
+            MySqlParameter stylistid = new MySqlParameter();
+            stylistid.ParameterName = "@stylistId";
+            stylistid.Value = stylistId;
+            cmd.Parameters.Add(stylistid);
+            cmd.ExecuteNonQuery();
+            _id = (int) cmd.LastInsertedId;
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
 
+        public List<Stylist> GetStylists()
+        {
+            List<Stylist> stylistSpecialties = new List<Stylist> {};
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT stylists.* FROM specialties JOIN service_requests ON (specialties.id = service_requests.specialty_id) JOIN stylists ON (service_requests.stylist_id = stylists.id) WHERE specialties.id = @searchId;";
+            MySqlParameter searchId = new MySqlParameter();
+            searchId.ParameterName = "@searchId";
+            searchId.Value = this._id;
+            cmd.Parameters.Add(searchId);
+            int stylistId = 0;
+            string stylistName = "";
+            int stylistYearsExp = 0;
+            string stylistWorkDays = "";
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            while(rdr.Read())
+            {
+                stylistId = rdr.GetInt32(0);
+                stylistName = rdr.GetString(1);
+                stylistYearsExp = rdr.GetInt32(2);
+                stylistWorkDays = rdr.GetString(3);
+                Stylist foundStylist = new Stylist(stylistName, stylistYearsExp, stylistWorkDays, stylistId);
+                stylistSpecialties.Add(foundStylist);
+            }
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+            return stylistSpecialties;
+        }
     }
 
 }
