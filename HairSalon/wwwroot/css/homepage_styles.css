@@ -5,9 +5,8 @@
 }
 
 #welcomeImage {
-    background-image: url("~/img/cutterz.jpg");
+    background-image: url("/img/cutterz.jpg");
     background-size: cover;
-    height: auto
     width: 75%;
 }
 
