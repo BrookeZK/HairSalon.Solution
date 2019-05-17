@@ -34,6 +34,14 @@ namespace HairSalon.Controllers
             return RedirectToAction("Show", "Stylists", new {id = stylistId});
         }
 
+        [HttpGet("/stylists/{stylistId}/clients/{clientId}/edit")]
+        public ActionResult Edit(int stylistId, int clientId)
+        {
+            Client foundClient = Client.Find(clientId);
+            foundClient.Edit();
+            return RedirectToAction("Show", new {id = clientId})
+        }
+
     }
 
 }
