@@ -35,22 +35,36 @@ namespace HairSalon.Controllers
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
             Stylist selectedStylist = Stylist.Find(stylistId);
+            List<Specialty> stylistSpecialties = selectedStylist.GetSpecialties();
+            List<Specialty> allSpecialties = Specialty.GetAll();
             List<Client> stylistClients = selectedStylist.GetClients();
             model.Add("stylist", selectedStylist);
             model.Add("clients", stylistClients);
+            model.Add("specialty", allSpecialties);
+            model.Add("stylistSpecialties", stylistSpecialties);
             return View(model);
         }
 
+        [HttpPost("/stylists/{stylistId}/add-specialty")]
+        public ActionResult AddSpecialty(int stylistId, int id)
+        {
+            Stylist foundStylist = Stylist.Find(stylistId);
+            foundStylist.AddSpecialty(id);
+            return RedirectToAction("Show", new {id = stylistId});
+        }
+
         [HttpPost("/stylists/{stylistId}")]
-        public ActionResult Create(int stylistId, string clientName, string serviceReq, DateTime appointment)
+        public ActionResult CreateClient(int stylistId, string clientName, string serviceReq, DateTime appointment)
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
             Stylist foundStylist = Stylist.Find(stylistId);
             Client newClient = new Client(clientName, serviceReq, appointment, stylistId);
             newClient.Save();
             List<Client> stylistClients = foundStylist.GetClients();
+            List<Specialty> allSpecialties = Specialty.GetAll();
             model.Add("stylist", foundStylist);
             model.Add("clients", stylistClients);
+            model.Add("specialty", allSpecialties);
             return View("Show", model);
         }
 

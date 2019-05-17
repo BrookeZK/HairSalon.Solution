@@ -9,7 +9,6 @@ namespace HairSalon.Models
     {
         private int _id;
         private string _name;
-        // private string _services;
         private int _yearsExperience;
         private string _workDays;
 
@@ -224,6 +223,60 @@ namespace HairSalon.Models
               conn.Dispose();
           }
           return allStylistClients;
+        }
+
+        public void AddSpecialty(int specialtyId)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"INSERT INTO service_requests (specialty_id, stylist_id) VALUES (@specialtyId, @stylistId);";
+            MySqlParameter specialtyIdParam = new MySqlParameter();
+            specialtyIdParam.ParameterName = "@specialtyId";
+            specialtyIdParam.Value = specialtyId;
+            cmd.Parameters.Add(specialtyIdParam);
+            MySqlParameter stylistid = new MySqlParameter();
+            stylistid.ParameterName = "@stylistId";
+            stylistid.Value = this._id;
+            cmd.Parameters.Add(stylistid);
+            cmd.ExecuteNonQuery();
+            _id = (int) cmd.LastInsertedId;
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
+        public List<Specialty> GetSpecialties()
+        {
+            List<Specialty> stylistSpecialties = new List<Specialty> {};
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT specialties.* FROM stylists JOIN service_requests ON (stylists.id = service_requests.stylist_id) JOIN specialties ON (service_requests.specialty_id = specialties.id) WHERE stylists.id = @searchId;";
+            MySqlParameter searchId = new MySqlParameter();
+            searchId.ParameterName = "@searchId";
+            searchId.Value = this._id;
+            cmd.Parameters.Add(searchId);
+            int specialtyId = 0;
+            string specialtyName = "";
+            int specialtyPrice = 0;
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            while(rdr.Read())
+            {
+                specialtyId = rdr.GetInt32(0);
+                specialtyName = rdr.GetString(1);
+                specialtyPrice = rdr.GetInt32(2);
+                Specialty newSpecialty = new Specialty(specialtyName, specialtyPrice, specialtyId);
+                stylistSpecialties.Add(newSpecialty);
+            }
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+            return stylistSpecialties;
         }
 
     }

@@ -21,6 +21,33 @@ Layout = "_Layout";
 
     <div class="card col-md-6">
         <div class="card-body">
+            <div class="card-text">
+                <h1 class="card-title">@Model["stylist"].Name's Specialties:</h1><br>
+                <ol>
+                    @if (Model["stylistSpecialties"].Count == 0)
+                    {
+                        <p>No specialties have been added yet!</p>
+                    }
+                    @if (Model["stylistSpecialties"].Count != 0)
+                    {
+                        @foreach (var specialty in Model["stylistSpecialties"])
+                        {
+                            <li><a href="/specialties/specialty.Id" class="btn btn-dark">@specialty.Name</a></li>
+                        }
+                    }
+                </ol>
+                <h2>Add a specialty to this stylist:</h2>
+                <form action="/stylists/@Model["stylist"].Id/add-specialty" method="post" >
+                  <select name='id' type='number'>
+                    <option value = 0>None</option>
+                    @foreach (var specialty in @Model["specialty"])
+                    {
+                      <option value='@specialty.Id'>@specialty.Name</option>
+                    }
+                  </select>
+                  <button type="submit" class="btn btn-dark">Add Specialty</button>
+                </form><br>
+            </div>
             <h1 class="card-title">@Model["stylist"].Name's Clients:</h1><br>
             <div class="card-text">
                 <ol>
