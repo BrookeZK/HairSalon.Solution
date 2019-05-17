@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using HairSalon.Models;
 using System.Collections.Generic;
+using MySql.Data.MySqlClient;
+using System;
+
 
 namespace HairSalon.Controllers
 {
@@ -43,6 +46,14 @@ namespace HairSalon.Controllers
             model.Add("stylist", stylist);
             model.Add("client", client);
             return View(model);
+        }
+
+        [HttpPost("/stylists/{stylistId}/clients/{clientId}/edit")]
+        public ActionResult Update(string newName, string newServiceRequest, DateTime newAppointment, int clientId)
+        {
+            Client foundClient = Client.Find(clientId);
+            foundClient.Edit(newName, newServiceRequest, newAppointment);
+            return RedirectToAction("Show", new {id = clientId});
         }
 
     }
