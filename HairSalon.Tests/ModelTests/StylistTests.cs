@@ -216,21 +216,24 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-        public void Edit_UpdatesStylistWorkDaysInDatabase_String()
+        public void Edit_UpdatesStylistPorpertiesInDatabase_Stylist()
         {
             //Arrange
-
+            string name1 = "Andrea";
+            int yearsExp1 = 3;
             string workDays1 = "Mon-Fri";
-            Stylist newStylist = new Stylist("Andrea", 3, workDays1);
+            Stylist newStylist = new Stylist(name1, yearsExp1, workDays1);
             newStylist.Save();
+            string name2 = "Andy";
+            int yearsExp2 = 4;
             string workDays2 = "Thurs-Mon";
 
             //Act
-            newStylist.Edit(workDays2);
-            string result = Stylist.Find(newStylist.Id).WorkDays;
+            newStylist.Edit(name2, yearsExp2, workDays2);
+            Stylist result = Stylist.Find(newStylist.Id);
 
             //Assert
-            Assert.AreEqual(workDays2, result);
+            Assert.AreEqual(newStylist, result);
         }
 
         [TestMethod]
