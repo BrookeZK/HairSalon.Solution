@@ -23,6 +23,19 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
+        public void New_HasCorrectModelType_Stylist()
+        {
+            //Arrange
+             ViewResult newView = new ClientsController().New(1) as ViewResult;
+
+            //Act
+            var result = newView.ViewData.Model;
+
+            //Assert
+            Assert.IsInstanceOfType(result, typeof(Stylist));
+        }
+
+        [TestMethod]
         public void Show_ReturnsCorrectView_True()
         {
             //Arrange
@@ -36,6 +49,19 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
+        public void Show_HasCorrectModelType_DictionaryOfStringAndObject()
+        {
+            //Arrange
+             ViewResult showView = new ClientsController().Show(1, 3) as ViewResult;
+
+            //Act
+            var result = showView.ViewData.Model;
+
+            //Assert
+            Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
+        }
+
+        [TestMethod]
         public void Edit_ReturnsCorrectView_True()
         {
             //Arrange
@@ -46,6 +72,19 @@ namespace HairSalon.Tests
 
             //Assert
             Assert.IsInstanceOfType(newView, typeof(ViewResult));
+        }
+
+        [TestMethod]
+        public void Edit_HasCorrectModelType_DictionaryOfStringAndObject()
+        {
+            //Arrange
+             ViewResult editView = new ClientsController().Edit(2, 4) as ViewResult;
+
+            //Act
+            var result = editView.ViewData.Model;
+
+            //Assert
+            Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
         }
 
     }

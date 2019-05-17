@@ -277,23 +277,6 @@ namespace HairSalon.Tests
             Assert.AreEqual(newClient, result);
         }
 
-        // [TestMethod]
-        // public void EditApt_UpdatesClientAppointmentInDatabase_DateTime()
-        // {
-        //     //Arrange
-        //     DateTime apt1 =  new DateTime(2019, 05, 19);
-        //     Client newClient = new Client("Bart", "perm", apt1, 1);
-        //     newClient.Save();
-        //     DateTime apt2 =  new DateTime(2019, 06, 06);
-        //
-        //     //Act
-        //     newClient.EditApt(apt2);
-        //     DateTime result = Client.Find(newClient.Id).Appointment;
-        //
-        //     //Assert
-        //     Assert.AreEqual(apt2, result);
-        // }
-
         [TestMethod]
         public void DeleteClient_DeletesClientFromDatabase_List()
         {

@@ -22,5 +22,30 @@ namespace HairSalon.Tests
             Assert.IsInstanceOfType(indexView, typeof(ViewResult));
         }
 
+        [TestMethod]
+        public void Login_ReturnsCorrectView_True()
+        {
+            //Arrange
+            HomeController controller = new HomeController();
+
+            //Act
+            ActionResult loginView = controller.Login("Brooke");
+
+            //Assert
+            Assert.IsInstanceOfType(loginView, typeof(ViewResult));
+        }
+
+        // [TestMethod]
+        // public void Login_HasCorrectModelType_string()
+        // {
+        //     //Arrange
+        //      ViewResult loginView = new HomeController().Login("Brooke") as ViewResult;
+        //
+        //     //Act
+        //     var result = loginView.ViewData.Model;
+        //
+        //     //Assert
+        //     Assert.IsInstanceOfType(result, typeof(string));
+        // }
     }
 }

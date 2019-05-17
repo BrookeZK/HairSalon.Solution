@@ -62,7 +62,7 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-        public void Show_HasCorrectModelType_StylistList()
+        public void Show_HasCorrectModelType_DictionaryOfStringAndObject()
         {
             //Arrange
              ViewResult showView = new StylistsController().Show(1) as ViewResult;
@@ -88,7 +88,7 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-        public void Edit_HasCorrectModelType_StylistList()
+        public void Edit_HasCorrectModelType_Stylist()
         {
             //Arrange
              ViewResult editView = new StylistsController().Edit(2) as ViewResult;
