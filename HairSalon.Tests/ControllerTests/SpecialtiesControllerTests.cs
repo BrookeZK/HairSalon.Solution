@@ -35,5 +35,18 @@ namespace HairSalon.Tests
             Assert.IsInstanceOfType(result, typeof(List<Specialty>));
         }
 
+        [TestMethod]
+        public void New_ReturnsCorrectView_True()
+        {
+            //Arrange
+            SpecialtiesController controller = new SpecialtiesController();
+
+            //Act
+            ActionResult newView = controller.New();
+
+            //Assert
+            Assert.IsInstanceOfType(newView, typeof(ViewResult));
+        }
+
     }
 }
