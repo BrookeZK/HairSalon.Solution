@@ -177,5 +177,21 @@ namespace HairSalon.Tests
             Assert.AreEqual(name2, result);
         }
 
+        [TestMethod]
+        public void DeleteSpecialty_DeletesSpecialtyFromDatabase_List()
+        {
+            //Arrange
+            Specialty firstSpecialty = new Specialty("perm");
+            firstSpecialty.Save();
+            Specialty secondSpecialty = new Specialty("hair");
+            secondSpecialty.Save();
+            //Act
+            firstSpecialty.DeleteSpecialty();
+            List<Specialty> result = Specialty.GetAll();
+            List<Specialty> newList = new List<Specialty> { secondSpecialty };
+            //Assert
+            CollectionAssert.AreEqual(newList, result);
+        }
+
     }
 }
