@@ -14,6 +14,20 @@ namespace HairSalon.Controllers
             List<Specialty> allSpecialties = Specialty.GetAll();
             return View(allSpecialties);
         }
+
+        [HttpGet("/specialties/new")]
+        public ActionResult New()
+        {
+            return View();
+        }
+
+        [HttpPost("/specialties")]
+        public ActionResult Create(string specialtyName)
+        {
+            Specialty newSpecialty = new Specialty(specialtyName);
+            newSpecialty.Save();
+            return RedirectToAction("Index");
+        }
     }
 
 }
