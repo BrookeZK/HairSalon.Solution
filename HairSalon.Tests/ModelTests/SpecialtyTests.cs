@@ -82,5 +82,67 @@ namespace HairSalon.Tests
             Assert.AreEqual(firstSpecialty, secondSpecialty);
         }
 
+        [TestMethod]
+        public void GetAll_ReturnsEmptyListFromDatabase_SpecialtyList()
+        {
+            //Arrange
+            List<Specialty> newList = new List<Specialty> { };
+
+            //Act
+            List<Specialty> result = Specialty.GetAll();
+
+            //Assert
+            CollectionAssert.AreEqual(newList, result);
+        }
+        // 
+        // [TestMethod]
+        // public void GetAll_ReturnsListOfSpecialties_SpecialtyList()
+        // {
+        //     //Arrange
+        //     Specialty firstSpecialty = new Specialty("hair");
+        //     firstSpecialty.Save();
+        //     Specialty secondSpecialty = new Specialty("color");
+        //     secondSpecialty.Save();
+        //     List<Specialty> newList = new List<Specialty> { firstSpecialty, secondSpecialty };
+        //
+        //     //Act
+        //     List<Specialty> result = Specialty.GetAll();
+        //
+        //     //Assert
+        //     CollectionAssert.AreEqual(newList, result);
+        // }
+        //
+        // [TestMethod]
+        // public void Save_SavesToDatabase_ClientList()
+        // {
+        //     //Arrange
+        //     DateTime apt =  new DateTime(2019, 05, 19);
+        //     Client testClient = new Client("Bart", "perm", apt, 1);
+        //     //Act
+        //     testClient.Save();
+        //     List<Client> result = Client.GetAll();
+        //     List<Client> testList = new List<Client>{testClient};
+        //
+        //     //Assert
+        //     CollectionAssert.AreEqual(testList, result);
+        // }
+        //
+        // [TestMethod]
+        // public void Save_AssignsIdToObject_Id()
+        // {
+        //     //Arrange
+        //     DateTime apt =  new DateTime(2019, 05, 19);
+        //     Client testClient = new Client("Bart", "perm", apt, 1);
+        //     //Act
+        //     testClient.Save();
+        //     Client savedClient = Client.GetAll()[0];
+        //
+        //     int result = savedClient.Id;
+        //     int testId = testClient.Id;
+        //
+        //     //Assert
+        //     Assert.AreEqual(result, testId);
+        // }
+
     }
 }
