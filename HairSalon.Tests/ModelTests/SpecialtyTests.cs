@@ -22,7 +22,7 @@ namespace HairSalon.Tests
         public void SpecialtyConstructor_CreatesInstanceOfClient_Specialty()
         {
             //Arrange
-            Specialty newSpecialty = new Specialty("hair");
+            Specialty newSpecialty = new Specialty("hair", 30);
 
             //Assert
             Assert.AreEqual(typeof(Specialty), newSpecialty.GetType());
@@ -33,7 +33,7 @@ namespace HairSalon.Tests
         {
             //Arrange
             string name = "hair";
-            Specialty newSpecialty = new Specialty(name);
+            Specialty newSpecialty = new Specialty(name, 30);
 
             //Act
             string result = newSpecialty.Name;
@@ -48,7 +48,7 @@ namespace HairSalon.Tests
             //Arrange
             string name1 = "hair";
             string name2 = "color";
-            Specialty newSpecialty = new Specialty(name1);
+            Specialty newSpecialty = new Specialty(name1, 30);
 
             //Act
             string result = newSpecialty.Name = name2;
@@ -58,11 +58,40 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
+        public void GetPrice_ReturnsPrice_Int()
+        {
+            //Arrange
+            int price = 30;
+            Specialty newSpecialty = new Specialty("bob", price);
+
+            //Act
+            int result = newSpecialty.Price;
+
+            //Assert
+            Assert.AreEqual(price, result);
+        }
+
+        [TestMethod]
+        public void SetPrice_UpdatePrice_Int()
+        {
+            //Arrange
+            int price1 = 30;
+            int price2 = 40;
+            Specialty newSpecialty = new Specialty("bob", price1);
+
+            //Act
+            int result = newSpecialty.Price = price2;
+
+            //Assert
+            Assert.AreEqual(price2, result);
+        }
+
+        [TestMethod]
         public void GetId_ReturnsId_Int()
         {
             //Arrange
             int id = 2;
-            Specialty newSpecialty = new Specialty("hair", id);
+            Specialty newSpecialty = new Specialty("hair", 30, id);
 
             //Act
             int result = newSpecialty.Id;
@@ -75,8 +104,8 @@ namespace HairSalon.Tests
         public void Equals_ReturnsTrueIfPropertiesAreTheSame_Specialty()
         {
             // Arrange, Act
-            Specialty firstSpecialty = new Specialty("hair");
-            Specialty secondSpecialty = new Specialty("hair");
+            Specialty firstSpecialty = new Specialty("hair", 30);
+            Specialty secondSpecialty = new Specialty("hair", 30);
 
             // Assert
             Assert.AreEqual(firstSpecialty, secondSpecialty);
@@ -99,9 +128,9 @@ namespace HairSalon.Tests
         public void GetAll_ReturnsListOfSpecialties_SpecialtyList()
         {
             //Arrange
-            Specialty firstSpecialty = new Specialty("hair");
+            Specialty firstSpecialty = new Specialty("hair", 30);
             firstSpecialty.Save();
-            Specialty secondSpecialty = new Specialty("color");
+            Specialty secondSpecialty = new Specialty("color", 30);
             secondSpecialty.Save();
             List<Specialty> newList = new List<Specialty> { firstSpecialty, secondSpecialty };
 
@@ -116,7 +145,7 @@ namespace HairSalon.Tests
         public void Save_SavesToDatabase_SpecialtyList()
         {
             //Arrange
-            Specialty testSpecialty = new Specialty("perm");
+            Specialty testSpecialty = new Specialty("perm", 30);
 
             //Act
             testSpecialty.Save();
@@ -131,7 +160,7 @@ namespace HairSalon.Tests
         public void Save_AssignsIdToObject_Id()
         {
             //Arrange
-            Specialty testSpecialty = new Specialty("hair");
+            Specialty testSpecialty = new Specialty("hair", 30);
             testSpecialty.Save();
 
             //Act
@@ -148,9 +177,9 @@ namespace HairSalon.Tests
         public void Find_ReturnsCorrectSpecialtyFromDatabase_Specialty()
         {
             //Arrange
-            Specialty testSpecialty1 = new Specialty("perm");
+            Specialty testSpecialty1 = new Specialty("perm", 30);
             testSpecialty1.Save();
-            Specialty testSpecialty2 = new Specialty("hair");
+            Specialty testSpecialty2 = new Specialty("hair", 30);
             testSpecialty2.Save();
 
             //Act
@@ -161,29 +190,31 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-        public void Edit_UpdatesSpecialtyNameInDatabase_Specialty()
+        public void Edit_UpdatesSpecialtyPropertiesInDatabase_Specialty()
         {
             //Arrange
             string name1 = "hair";
-            Specialty newSpecialty = new Specialty(name1);
+            int price1 = 30;
+            Specialty newSpecialty = new Specialty(name1, price1);
             newSpecialty.Save();
             string name2 ="curly hair";
+            int price2 = 35;
 
             //Act
-            newSpecialty.Edit(name2);
-            string result = Specialty.Find(newSpecialty.Id).Name;
+            newSpecialty.Edit(name2, price2);
+            Specialty result = Specialty.Find(newSpecialty.Id);
 
             //Assert
-            Assert.AreEqual(name2, result);
+            Assert.AreEqual(newSpecialty, result);
         }
 
         [TestMethod]
         public void DeleteSpecialty_DeletesSpecialtyFromDatabase_List()
         {
             //Arrange
-            Specialty firstSpecialty = new Specialty("perm");
+            Specialty firstSpecialty = new Specialty("perm", 30);
             firstSpecialty.Save();
-            Specialty secondSpecialty = new Specialty("hair");
+            Specialty secondSpecialty = new Specialty("hair", 35);
             secondSpecialty.Save();
             //Act
             firstSpecialty.DeleteSpecialty();

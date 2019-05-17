@@ -8,14 +8,17 @@ namespace HairSalon.Models
     {
         private int _id;
         private string _name;
+        private int _price;
 
-        public Specialty(string name, int id = 0)
+        public Specialty(string name, int price, int id = 0)
         {
             _name = name;
+            _price = price;
             _id = id;
         }
 
         public string Name{ get => _name; set => _name = value; }
+        public int Price{ get => _price; set => _price = value; }
         public int Id{ get => _id; }
 
         public static void ClearAll()
@@ -43,7 +46,8 @@ namespace HairSalon.Models
                 Specialty newSpecialty = (Specialty) otherSpecialty;
                 bool idEquality = this.Id == newSpecialty.Id;
                 bool nameEquality = (this.Name == newSpecialty.Name);
-                return (idEquality && nameEquality);
+                bool priceEquality = (this.Price == newSpecialty.Price);
+                return (idEquality && nameEquality && priceEquality);
             }
         }
 
@@ -59,7 +63,8 @@ namespace HairSalon.Models
             {
                 int specialtyId = rdr.GetInt32(0);
                 string specialtyName = rdr.GetString(1);
-                Specialty newSpecialty = new Specialty(specialtyName, specialtyId);
+                int specialtyPrice = rdr.GetInt32(2);
+                Specialty newSpecialty = new Specialty(specialtyName, specialtyPrice, specialtyId);
                 allSpecialties.Add(newSpecialty);
             }
             conn.Close();
@@ -75,11 +80,15 @@ namespace HairSalon.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO specialties (name) VALUES (@name);";
+            cmd.CommandText = @"INSERT INTO specialties (name, price) VALUES (@name, @price);";
             MySqlParameter name = new MySqlParameter();
             name.ParameterName = "@name";
             name.Value = this._name;
             cmd.Parameters.Add(name);
+            MySqlParameter price = new MySqlParameter();
+            price.ParameterName = "@price";
+            price.Value = this._price;
+            cmd.Parameters.Add(price);
             cmd.ExecuteNonQuery();
             _id = (int) cmd.LastInsertedId;
             conn.Close();
@@ -102,12 +111,14 @@ namespace HairSalon.Models
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             int specialtyId = 0;
             string specialtyName = "";
+            int specialtyPrice = 0;
             while(rdr.Read())
             {
                 specialtyId = rdr.GetInt32(0);
                 specialtyName = rdr.GetString(1);
+                specialtyPrice = rdr.GetInt32(2);
             }
-            Specialty foundSpecialty = new Specialty(specialtyName, specialtyId);
+            Specialty foundSpecialty = new Specialty(specialtyName, specialtyPrice, specialtyId);
             conn.Close();
             if (conn != null)
             {
@@ -116,12 +127,12 @@ namespace HairSalon.Models
             return foundSpecialty;
         }
 
-        public void Edit(string newName)
+        public void Edit(string newName, int newPrice)
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"UPDATE specialties SET name = @newName WHERE id = @searchId;";
+            cmd.CommandText = @"UPDATE specialties SET name = @newName WHERE id = @searchId; UPDATE specialties SET price = @newPrice WHERE id = @searchId;";
             MySqlParameter searchId = new MySqlParameter();
             searchId.ParameterName = "@searchId";
             searchId.Value = _id;
@@ -130,8 +141,13 @@ namespace HairSalon.Models
             name.ParameterName = "@newName";
             name.Value = newName;
             cmd.Parameters.Add(name);
+            MySqlParameter price = new MySqlParameter();
+            price.ParameterName = "@newPrice";
+            price.Value = newPrice;
+            cmd.Parameters.Add(price);
             cmd.ExecuteNonQuery();
             _name = newName;
+            _price = newPrice;
             conn.Close();
             if (conn != null)
             {

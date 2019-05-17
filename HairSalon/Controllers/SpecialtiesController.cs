@@ -22,12 +22,13 @@ namespace HairSalon.Controllers
         }
 
         [HttpPost("/specialties")]
-        public ActionResult Create(string specialtyName)
+        public ActionResult Create(string specialtyName, int specialtyPrice)
         {
-            Specialty newSpecialty = new Specialty(specialtyName);
+            Specialty newSpecialty = new Specialty(specialtyName, specialtyPrice);
             newSpecialty.Save();
             return RedirectToAction("Index");
         }
+
     }
 
 }
