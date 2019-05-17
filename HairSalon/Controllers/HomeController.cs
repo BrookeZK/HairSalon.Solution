@@ -19,7 +19,7 @@ namespace HairSalon.Controllers
         [HttpPost("/login")]
         public ActionResult Authenticate(string userName)
         {
-            return RedirectToAction("Login", userName);
+            return View("Login", userName);
         }
 
     }
