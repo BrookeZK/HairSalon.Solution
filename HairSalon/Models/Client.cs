@@ -154,7 +154,7 @@ namespace HairSalon.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"UPDATE clients SET name = @newName WHERE id = @searchId; UPDATE clients SET services_requested = @newSerReq WHERE id = @searchId; UPDATE clients SET appointment_time = @newAppointment WHERE id = @searchId;";
+            cmd.CommandText = @"UPDATE clients SET name = @newName WHERE id = @searchId; UPDATE clients SET services_requested = @newSerReq WHERE id = @searchId;";
             MySqlParameter searchId = new MySqlParameter();
             searchId.ParameterName = "@searchId";
             searchId.Value = _id;
@@ -167,16 +167,35 @@ namespace HairSalon.Models
             serviceReq.ParameterName = "@newSerReq";
             serviceReq.Value = newServiceRequest;
             cmd.Parameters.Add(serviceReq);
-            MySqlParameter appointment = new MySqlParameter();
-            appointment.ParameterName = "@newAppointment";
-            appointment.Value = newAppointment;
-            cmd.Parameters.Add(appointment);
-            cmd.ExecuteNonQuery();
+            _name = newName;
             _serviceRequest = newServiceRequest;
+            cmd.ExecuteNonQuery();
             conn.Close();
             if (conn != null)
             {
                 conn.Dispose();
+            }
+            if (newAppointment.ToString() != "1/1/01 12:00:00 AM")
+            {
+                MySqlConnection conn2 = DB.Connection();
+                conn2.Open();
+                var cmd2 = conn2.CreateCommand() as MySqlCommand;
+                cmd2.CommandText = @"UPDATE clients SET appointment_time = @newAppointment WHERE id = @searchId;";
+                MySqlParameter searchId2 = new MySqlParameter();
+                searchId2.ParameterName = "@searchId";
+                searchId2.Value = _id;
+                cmd2.Parameters.Add(searchId2);
+                MySqlParameter appointment = new MySqlParameter();
+                appointment.ParameterName = "@newAppointment";
+                appointment.Value = newAppointment;
+                cmd2.Parameters.Add(appointment);
+                _appointment = newAppointment;
+                cmd2.ExecuteNonQuery();
+                conn.Close();
+                if (conn2 != null)
+                {
+                    conn2.Dispose();
+                }
             }
         }
 
