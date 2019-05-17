@@ -94,7 +94,7 @@ namespace HairSalon.Tests
             //Assert
             CollectionAssert.AreEqual(newList, result);
         }
-        // 
+        //
         // [TestMethod]
         // public void GetAll_ReturnsListOfSpecialties_SpecialtyList()
         // {
@@ -112,20 +112,19 @@ namespace HairSalon.Tests
         //     CollectionAssert.AreEqual(newList, result);
         // }
         //
-        // [TestMethod]
-        // public void Save_SavesToDatabase_ClientList()
-        // {
-        //     //Arrange
-        //     DateTime apt =  new DateTime(2019, 05, 19);
-        //     Client testClient = new Client("Bart", "perm", apt, 1);
-        //     //Act
-        //     testClient.Save();
-        //     List<Client> result = Client.GetAll();
-        //     List<Client> testList = new List<Client>{testClient};
-        //
-        //     //Assert
-        //     CollectionAssert.AreEqual(testList, result);
-        // }
+        [TestMethod]
+        public void Save_SavesToDatabase_SpecialtyList()
+        {
+            //Arrange
+            Specialty testSpecialty = new Specialty("perm");
+            //Act
+            testSpecialty.Save();
+            List<Specialty> result = Specialty.GetAll();
+            List<Specialty> testList = new List<Specialty>{testSpecialty};
+
+            //Assert
+            CollectionAssert.AreEqual(testList, result);
+        }
         //
         // [TestMethod]
         // public void Save_AssignsIdToObject_Id()
