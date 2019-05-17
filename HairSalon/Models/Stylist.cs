@@ -140,21 +140,31 @@ namespace HairSalon.Models
             return foundStylist;
         }
 
-        public void Edit(string newWorkDays)
+        public void Edit(string newName, int newYearsExperience, string newWorkDays)
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"UPDATE stylists SET work_days = @newWorkDays WHERE id = @searchId;";
+            cmd.CommandText = @"UPDATE stylists SET name = @newName WHERE id = @searchId; UPDATE stylists SET years_of_experience = @newYearsExperience WHERE id = @searchId; UPDATE stylists SET work_days = @newWorkDays WHERE id = @searchId;";
             MySqlParameter searchId = new MySqlParameter();
             searchId.ParameterName = "@searchId";
             searchId.Value = _id;
             cmd.Parameters.Add(searchId);
+            MySqlParameter name = new MySqlParameter();
+            name.ParameterName = "@newName";
+            name.Value = newName;
+            cmd.Parameters.Add(name);
+            MySqlParameter yearsExp = new MySqlParameter();
+            yearsExp.ParameterName = "@newYearsExperience";
+            yearsExp.Value = newYearsExperience;
+            cmd.Parameters.Add(yearsExp);
             MySqlParameter workDays = new MySqlParameter();
             workDays.ParameterName = "@newWorkDays";
             workDays.Value = newWorkDays;
             cmd.Parameters.Add(workDays);
             cmd.ExecuteNonQuery();
+            _name = newName;
+            _yearsExperience = newYearsExperience;
             _workDays = newWorkDays;
             conn.Close();
             if (conn != null)

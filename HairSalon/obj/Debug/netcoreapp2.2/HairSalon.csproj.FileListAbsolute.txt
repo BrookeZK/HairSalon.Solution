@@ -28,3 +28,4 @@
 /Users/Brooke/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Clients/New.g.cshtml.cs
 /Users/Brooke/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Clients/Show.g.cshtml.cs
 /Users/Brooke/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Home/Login.g.cshtml.cs
+/Users/Brooke/Desktop/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Stylists/Edit.g.cshtml.cs

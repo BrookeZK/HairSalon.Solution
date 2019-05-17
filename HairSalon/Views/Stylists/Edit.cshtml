@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+<h1>Stylists</h1>
+<h2><em>Edit @Model.Name's information:</em></h2>
+
+<form action='/stylists/@Model.Id/edit' method='post'>
+    <label for="newName">Stylist name:</label>
+    <input id="newName" name="newName" type="text" value="@Model.Name">
+    <label for="newYearsExperience">Years of Experience:</label>
+    <input id="newYearsExperience" name="newYearsExperience" type="number" value="@Model.YearsExperience">
+    <label for="newWorkDays">Days available to work:</label>
+    <input id="newWorkDays" name="newWorkDays" type="text" value="@Model.WorkDays">
+    <button type='submit' class="btn btn-dark">Save Changes</button>
+</form>
+
+<a href="/stylists/@Model.Id" class="btn btn-dark">Return to Stylist</a>
+<a href="/stylists" class="btn btn-dark">Return to list of all Stylists</a>
+<a href="/login" class="btn btn-dark">Return to homepage</a><br><br>
