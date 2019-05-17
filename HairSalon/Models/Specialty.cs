@@ -157,6 +157,41 @@ namespace HairSalon.Models
             }
         }
 
+        // public List<Client> GetClients()
+        // {
+        //   List<Client> allSpecialtyClients = new List<Client> {};
+        //   MySqlConnection conn = DB.Connection();
+        //   conn.Open();
+        //   var cmd = conn.CreateCommand() as MySqlCommand;
+        //   cmd.CommandText = @"SELECT client_id.* FROM service_requests WHERE specialty_id = @specialty_id;";
+        //   MySqlParameter specialtyId = new MySqlParameter();
+        //   specialtyId.ParameterName = "@specialty_id";
+        //   specialtyId.Value = this._id;
+        //   cmd.Parameters.Add(specialtyId);
+        //   var rdr = cmd.ExecuteReader() as MySqlDataReader;
+        //   int clientId = 0;
+        //   string clientName = "";
+        //   string clientServReq = "";
+        //   DateTime clientApt = new DateTime();
+        //   int clientStylistId = 0;
+        //   while(rdr.Read())
+        //   {
+        //       clientId = rdr.GetInt32(0);
+        //       clientName = rdr.GetString(1);
+        //       clientServReq = rdr.GetString(2);
+        //       clientApt = rdr.GetDateTime(3);
+        //       clientStylistId = rdr.GetInt32(4);
+        //       Client foundClient = new Client(clientName, clientServReq, clientApt, clientStylistId, clientId);
+        //       allStylistClients.Add(foundClient);
+        //   }
+        //   conn.Close();
+        //   if (conn != null)
+        //   {
+        //       conn.Dispose();
+        //   }
+        //   return allStylistClients;
+        // }
+
     }
 
 }
