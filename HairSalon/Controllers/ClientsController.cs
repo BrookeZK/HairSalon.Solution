@@ -26,6 +26,14 @@ namespace HairSalon.Controllers
             return View(model);
         }
 
+        [HttpPost("/stylists/{stylistId}/clients/{clientId}/delete")]
+        public ActionResult Delete(int stylistId, int clientId)
+        {
+            Client foundClient = Client.Find(clientId);
+            foundClient.DeleteClient();
+            return RedirectToAction("Show", "Stylists", new {id = stylistId});
+        }
+
     }
 
 }

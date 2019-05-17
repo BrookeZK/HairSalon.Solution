@@ -16,5 +16,9 @@ Layout = "_Layout";
                 <h2>Appointment Time and Date:</h2><br>
                 <h3>---@Model["client"].Appointment</h3><br><br>
             </div>
+            <a href="/stylists/@Model["stylist"].Id/clients/@Model["client"].Id/edit" class="btn btn-dark">Edit this client</a>
+            <form action="/stylists/@Model["stylist"].Id/clients/@Model["client"].Id/delete" method="post">
+                <button type="submit" class="btn btn-dark">Delete client</button>
+            </form>
         </div>
     </div>

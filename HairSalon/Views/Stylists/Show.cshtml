@@ -2,7 +2,6 @@
 Layout = "_Layout";
 }
 
-<a href="/stylists/@Model["stylist"].Id/clients/new" class="btn btn-dark">Add a new client</a>
 <a href="/stylists" class="btn btn-dark">Return to list of Stylists</a>
 <a href="/login" class="btn btn-dark">Return to homepage</a><br><br>
 
@@ -38,6 +37,7 @@ Layout = "_Layout";
                         }
                     }
                 </ol>
+                <a href="/stylists/@Model["stylist"].Id/clients/new" class="btn btn-dark">Add a new client</a>
                 <form action="/stylists/@Model["stylist"].Id/delete-clients" method="post">
                     <button type="submit" class="btn btn-dark">Delete ALL clients</button>
                 </form>
