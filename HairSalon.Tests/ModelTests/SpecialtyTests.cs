@@ -160,5 +160,22 @@ namespace HairSalon.Tests
             Assert.AreEqual(testSpecialty2, foundSpecialty);
         }
 
+        [TestMethod]
+        public void Edit_UpdatesSpecialtyNameInDatabase_Specialty()
+        {
+            //Arrange
+            string name1 = "hair";
+            Specialty newSpecialty = new Specialty(name1);
+            newSpecialty.Save();
+            string name2 ="curly hair";
+
+            //Act
+            newSpecialty.Edit(name2);
+            string result = Specialty.Find(newSpecialty.Id).Name;
+
+            //Assert
+            Assert.AreEqual(name2, result);
+        }
+
     }
 }
