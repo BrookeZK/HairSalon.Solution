@@ -94,29 +94,30 @@ namespace HairSalon.Tests
             //Assert
             CollectionAssert.AreEqual(newList, result);
         }
-        //
-        // [TestMethod]
-        // public void GetAll_ReturnsListOfSpecialties_SpecialtyList()
-        // {
-        //     //Arrange
-        //     Specialty firstSpecialty = new Specialty("hair");
-        //     firstSpecialty.Save();
-        //     Specialty secondSpecialty = new Specialty("color");
-        //     secondSpecialty.Save();
-        //     List<Specialty> newList = new List<Specialty> { firstSpecialty, secondSpecialty };
-        //
-        //     //Act
-        //     List<Specialty> result = Specialty.GetAll();
-        //
-        //     //Assert
-        //     CollectionAssert.AreEqual(newList, result);
-        // }
-        //
+
+        [TestMethod]
+        public void GetAll_ReturnsListOfSpecialties_SpecialtyList()
+        {
+            //Arrange
+            Specialty firstSpecialty = new Specialty("hair");
+            firstSpecialty.Save();
+            Specialty secondSpecialty = new Specialty("color");
+            secondSpecialty.Save();
+            List<Specialty> newList = new List<Specialty> { firstSpecialty, secondSpecialty };
+
+            //Act
+            List<Specialty> result = Specialty.GetAll();
+
+            //Assert
+            CollectionAssert.AreEqual(newList, result);
+        }
+
         [TestMethod]
         public void Save_SavesToDatabase_SpecialtyList()
         {
             //Arrange
             Specialty testSpecialty = new Specialty("perm");
+
             //Act
             testSpecialty.Save();
             List<Specialty> result = Specialty.GetAll();
@@ -125,23 +126,23 @@ namespace HairSalon.Tests
             //Assert
             CollectionAssert.AreEqual(testList, result);
         }
-        //
-        // [TestMethod]
-        // public void Save_AssignsIdToObject_Id()
-        // {
-        //     //Arrange
-        //     DateTime apt =  new DateTime(2019, 05, 19);
-        //     Client testClient = new Client("Bart", "perm", apt, 1);
-        //     //Act
-        //     testClient.Save();
-        //     Client savedClient = Client.GetAll()[0];
-        //
-        //     int result = savedClient.Id;
-        //     int testId = testClient.Id;
-        //
-        //     //Assert
-        //     Assert.AreEqual(result, testId);
-        // }
+
+        [TestMethod]
+        public void Save_AssignsIdToObject_Id()
+        {
+            //Arrange
+            Specialty testSpecialty = new Specialty("hair");
+            testSpecialty.Save();
+            
+            //Act
+            Specialty savedSpecialty = Specialty.GetAll()[0];
+
+            int result = savedSpecialty.Id;
+            int testId = testSpecialty.Id;
+
+            //Assert
+            Assert.AreEqual(result, testId);
+        }
 
     }
 }
