@@ -31,7 +31,7 @@ Layout = "_Layout";
                     {
                         @foreach (var stylist in Model["stylistSpecialties"])
                         {
-                            <li><a href="/stylists/stylist.Id" class="btn btn-dark">@stylist.Name</a></li>
+                            <li><a href="/stylists/@stylist.Id" class="btn btn-dark">@stylist.Name</a></li>
                         }
                     }
                 </ol>

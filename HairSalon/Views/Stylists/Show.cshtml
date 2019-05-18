@@ -15,10 +15,12 @@ Layout = "_Layout";
                 <h2>Days available to work:</h2><br>
                 <h3>@Model["stylist"].WorkDays</h3><br><br>
                 <a href="/stylists/@Model["stylist"].Id/edit" class="btn btn-dark">Edit Stylist information</a>
+                <form action="/stylists/@Model["stylist"].Id/delete" method="post">
+                    <button type="submit" class="btn btn-dark">Delete Stylist AND clients</button>
+                </form>
             </div>
         </div>
     </div>
-
     <div class="card col-md-6">
         <div class="card-body">
             <div class="card-text">
@@ -32,7 +34,7 @@ Layout = "_Layout";
                     {
                         @foreach (var specialty in Model["stylistSpecialties"])
                         {
-                            <li><a href="/specialties/specialty.Id" class="btn btn-dark">@specialty.Name</a></li>
+                            <li><a href="/specialties/@specialty.Id" class="btn btn-dark">@specialty.Name</a></li>
                         }
                     }
                 </ol>
