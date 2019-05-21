@@ -34,7 +34,7 @@ _To make your own database in MySql shell:_
 * _In your command line, type "git clone https://github.com/BrookeZK/HairSalon.Solution.git" to clone the repository to your desktop._
 * _In your command line, navigate into the new folder "HairSalon.Solution", then into the subfolder "HairSalon"._
 * _Once inside "HairSalon," type "dotnet run", and your terminal will inform you that the program is running on <http://localhost:5000>._
-* _Finally, put the url <http://localhost:5000> into your web browser and the program will open.._
+* _Finally, put the url <http://localhost:5000> into your web browser and the program will open._
 
 ## Specs
 
